@@ -1,0 +1,39 @@
+xianquzhe:
+  # Publish all joint states -----------------------------------
+  joint_state_controller:
+    type: joint_state_controller/JointStateController
+    publish_rate: 50  
+
+  # Position Controllers ---------------------------------------
+  up_position_controller:
+    type: position_controllers/JointPositionController
+    joint: Upper_joint
+    pid_gain: {p: 100.0, i: 0.01, d: 10.0}
+  ur1_position_controller:
+    type: position_controllers/JointPositionController
+    joint: joint_ur1
+    pid_gain: {p: 100.0, i: 0.01, d: 10.0}
+  ur2_position_controller:
+    type: position_controllers/JointPositionController
+    joint: joint_ur2
+    pid_gain: {p: 100.0, i: 0.01, d: 10.0}
+  ur3_position_controller:
+    type: position_controllers/JointPositionController
+    joint: joint_ur3
+    pid_gain: {p: 100.0, i: 0.01, d: 10.0}
+  ur4_position_controller:
+    type: position_controllers/JointPositionController
+    joint: joint_ur4
+    pid_gain: {p: 100.0, i: 0.01, d: 10.0}
+  ur5_position_controller:
+    type: position_controllers/JointPositionController
+    joint: joint_ur5
+    pid_gain: {p: 100.0, i: 0.01, d: 10.0}
+  ur6_position_controller:
+    type: position_controllers/JointPositionController
+    joint: joint_ur6
+    pid_gain: {p: 100.0, i: 0.01, d: 10.0}
+
+
+
+

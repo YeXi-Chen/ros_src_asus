@@ -1,0 +1,23 @@
+<launch>
+
+    <!-- 运行gazebo仿真环境 -->
+    <include file="$(find gazebo_ros)/launch/empty_world.launch">
+
+    </include>
+
+    <!-- 加载机器人模型描述参数 -->
+    <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find xianquzhe)/urdf/xianquzhe1_arm_gazebo.xacro'" /> 
+
+    <!-- 在gazebo中加载机器人模型-->
+    <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
+          args="-urdf -model xianquzhe -param robot_description -z 0.005"/> 
+    <node
+    name="tf_footprint_base"
+    pkg="tf"
+    type="static_transform_publisher"
+    args="0 0 0 0 0 0 laser_link base_footprint 40" />
+    <!-- 运行ros_control 
+    <include file="$(find xianquzhe)/launch/control.launch">
+    </include>
+    -->
+</launch>

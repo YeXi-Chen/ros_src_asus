@@ -1,0 +1,37 @@
+<launch>
+
+
+
+<!--初始化参数服务器中的参数,激光初始位置-->
+<param name="switch_state" value="0" />
+<rosparam param="laser_trans"> [0.0,0.0,0.0]</rosparam>
+<rosparam param="laser_rot"> [0.0,0.0,0.0,1.0]</rosparam>
+
+
+<!--发布静态tf，ccd相对ur的ee_link的位置-->
+<node pkg="tf" type="static_transform_publisher" name="ccd_link_broadcaster" 
+args="-0.05 0.079 0 0 0 0.707 0.707 ee_link ccd_link 100" />
+
+
+<!--发布静态tf，wall相对ur的base_link的位置-->
+<node pkg="tf" type="static_transform_publisher" name="wall_link_broadcaster" 
+args="0.3 0 0.2 0 0 0 1 base_link wall 100" />
+
+
+<!--CCD检测节点，提供服务，测量激光面并更新TF数据-->
+<node  pkg="ccd_laser" type="ccd_serveice_node.py" name="ccd_get_plane_server" output="screen" respawn="true">
+</node>
+
+
+<!--从参数服务器读取激光基准面的状态，发布到tf-->
+<node  pkg="ccd_laser" type="laser_tf_pub.py" name="laser_tf_pub" respawn="true">
+</node>
+
+
+<!--生成激光基准面点云，发布到topic，可以在rviz中可视化-->
+<node  pkg="ccd_laser" type="laser_rviz_pt" name="laser_rviz_pt" respawn="true">
+    <remap from="laser_pt" to="laser_pt" /> 
+</node>
+
+
+</launch>

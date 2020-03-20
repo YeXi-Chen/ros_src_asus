@@ -253,12 +253,12 @@
       <static>1</static>
     </model>
     <state world_name='default'>
-      <sim_time>89 747000000</sim_time>
-      <real_time>91 134498525</real_time>
-      <wall_time>1583569966 370719271</wall_time>
-      <iterations>89747</iterations>
+      <sim_time>160 796000000</sim_time>
+      <real_time>71 243627559</real_time>
+      <wall_time>1584425059 359105618</wall_time>
+      <iterations>71049</iterations>
       <model name='6x8'>
-        <pose frame=''>0 0 0 0 -0 1.5708</pose>
+        <pose frame=''>4e-06 0 0 0 -0 1.57079</pose>
         <scale>1 1 1</scale>
         <link name='Wall_16'>
           <pose frame=''>0 -3.925 0 0 0 -3.14159</pose>
@@ -295,16 +295,52 @@
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
       </model>
+      <model name='laser_green'>
+        <pose frame=''>2.5 0 0 0 0 -1.5708</pose>
+        <scale>1 1 1</scale>
+        <link name='Wall_0'>
+          <pose frame=''>2.5 0 0 0 -0 1.57079</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
       <light name='sun'>
         <pose frame=''>0 0 10 0 -0 0</pose>
       </light>
     </state>
     <gui fullscreen='0'>
       <camera name='user_camera'>
-        <pose frame=''>9.42451 -2.90232 12.9275 0 0.971643 2.9962</pose>
+        <pose frame=''>-7.87368 -0.398173 13.0945 0 0.642032 -0.013202</pose>
         <view_controller>orbit</view_controller>
         <projection_type>perspective</projection_type>
       </camera>
     </gui>
+    <model name='laser_green'>
+      <pose frame=''>-5.285 -1.74 0 0 -0 0</pose>
+      <link name='Wall_0'>
+        
+        <visual name='Wall_0_Visual'>
+          <pose frame=''>0 0 1.25 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>7.85 0.001 5</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Grey</name>
+            </script>
+            <ambient>0 0.945098 0 1</ambient>
+          </material>
+        </visual>
+        <pose frame=''>0 0 0 0 -0 3.14159</pose>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+        <gravity>1</gravity>
+      </link>
+      <static>1</static>
+    </model>
   </world>
 </sdf>

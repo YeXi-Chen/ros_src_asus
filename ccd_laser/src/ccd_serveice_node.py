@@ -43,7 +43,7 @@ def handle_get_laser_plane(req):
     #获得effector相对base_link
     try:
         get_link_state = rospy.ServiceProxy('/gazebo/get_link_state', GetLinkState)
-        effector = get_link_state('effector_base', 'base_link')
+        effector = get_link_state('ur6', 'base_link')
     except rospy.ServiceException, e:
         print "Service call failed: %s"%e
 
@@ -56,7 +56,7 @@ def handle_get_laser_plane(req):
     effector_rot = effector.link_state.pose.orientation
 
     #yz与末端相同，x为墙前0.3m，垂直墙面方向加上+/-1mm误差
-    trans = [wall_trans.x-0.3+random.uniform(-0.001,0.001),effector_trans.y,effector_trans.z]
+    trans = [wall_trans.x-0.5+random.uniform(-0.001,0.001),effector_trans.y,effector_trans.z]
     euler_temp = tf.transformations.euler_from_quaternion([wall_rot.x,wall_rot.y,wall_rot.z,wall_rot.w])
     #姿态与墙面相同
     rot = tf.transformations.quaternion_from_euler(euler_temp[0],euler_temp[1],euler_temp[2]+(math.pi/2)).tolist()

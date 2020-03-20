@@ -23,9 +23,9 @@
 </node>
 
 
-<!--碰撞检测节点，发布topic并更新参数服务器-->
+<!--碰撞检测节点，发布topic并更新参数服务器
 <node  pkg="ccd_laser" type="switch.py" name="switch_state_pub" respawn="true">
     <remap from="laser_pt" to="laser_pt" /> 
 </node>
-
+-->
 </launch>
